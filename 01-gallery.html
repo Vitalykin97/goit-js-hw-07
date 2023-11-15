@@ -1,39 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>My Gallery</title>
-  <!-- Підключення CSS стилів бібліотеки basicLightbox -->
-  <link href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css" rel="stylesheet"/>
-  <style>
-    /* Стилізуйте вашу галерею тут */
-  </style>
-</head>
-<body>
-  <!-- Галерея -->
-  <ul class="gallery">
-  </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Gallery</title>
+    <!-- Підключення CSS стилів бібліотеки basicLightbox -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Стилізуйте вашу галерею тут */
+    </style>
+  </head>
+  <body>
+    <!-- Галерея -->
+    <ul class="gallery"></ul>
 
-  <!-- Підключення скрипту бібліотеки basicLightbox -->
-  <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
-  <script>
-    const gallery = document.querySelector(".gallery");
+    <!-- Підключення скрипту бібліотеки basicLightbox -->
+    <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
+    <script>
+      const gallery = document.querySelector(".gallery");
 
-    gallery.addEventListener("click", (event) => {
-      event.preventDefault();
+      gallery.addEventListener("click", (event) => {
+        event.preventDefault();
 
-      // Перевірка, чи клікнуто на зображенні
-      if (event.target.nodeName === "IMG") {
-        // Отримання URL великого зображення з атрибута data-source
-        const source = event.target.dataset.source;
+        // Перевірка, чи клікнуто на зображенні
+        if (event.target.nodeName === "IMG") {
+          // Отримання URL великого зображення з атрибута data-source
+          const source = event.target.dataset.source;
 
-        // Створення модального вікна для зображення
-        const instance = basicLightbox.create(`<img src="${source}" alt="Image description">`);
+          // Створення модального вікна для зображення
+          const instance = basicLightbox.create(
+            `<img src="${source}" alt="Image description">`
+          );
 
-        // Показ модального вікна
-        instance.show();
-      }
-    });
-  </script>
-</body>
+          // Показ модального вікна
+          instance.show();
+        }
+      });
+    </script>
+  </body>
 </html>
