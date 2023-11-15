@@ -1,15 +1,35 @@
 import { galleryItems } from "./gallery-items.js";
-// Change code below this line
 
-console.log(galleryItems);
+const gallery = document.querySelector(".gallery");
 
-import * as basicLightbox from "basiclightbox";
+// Функція для створення розмітки галереї
+function createGalleryMarkup(items) {
+  return items
+    .map(
+      ({ preview, original, description }) => `
+      <li class="gallery__item">
+        <a class="gallery__link" href="${original}">
+          <img
+            class="gallery__image"
+            src="${preview}"
+            data-source="${original}"
+            alt="${description}"
+          />
+        </a>
+      </li>`
+    )
+    .join("");
+}
 
-// Припустимо, що у вас є змінна, яка містить URL великого зображення
-const imageUrl = "https://example.com/large-image.jpg";
+// Додаємо розмітку галереї на сторінку
+gallery.innerHTML = createGalleryMarkup(galleryItems);
 
-// Створення інстанції модального вікна basicLightbox
-const instance = basicLightbox.create(`<img src="${imageUrl}">`);
+// Обробник кліків для зображень у галереї
+gallery.addEventListener("click", (event) => {
+  event.preventDefault();
 
-// Показ модального вікна
-instance.show();
+  if (event.target.nodeName === "IMG") {
+    const instance = basicLightbox.create(`<img src="${event.target.dataset.source}" alt="${event.target.alt}">`);
+    instance.show();
+  }
+});
