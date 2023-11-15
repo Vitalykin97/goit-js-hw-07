@@ -1,4 +1,11 @@
-import { galleryItems } from "./gallery-items.js";
+import * as basicLightbox from "basiclightbox";
+
+// Приклад: URL зображення
+const imageUrl = "https://example.com/image.jpg";
+
+const instance = basicLightbox.create(`<img src="${imageUrl}" />`);
+
+instance.show();
 
 const gallery = document.querySelector(".gallery");
 
@@ -7,7 +14,7 @@ function createGalleryMarkup(items) {
     .map(
       ({ preview, original, description }) => `
       <li class="gallery__item">
-        <a class="gallery__link" href="${original}">
+        <a class="gallery__link" href='https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820_1280.jpg',
           <img
             class="gallery__image"
             src="${preview}"

@@ -1,19 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Image gallery</title>
-    <link rel="stylesheet" href="css/common.css" />
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
-  <body>
-    <p><a href="index.html">Go back</a></p>
+<head>
+  <meta charset="UTF-8">
+  <title>My Gallery</title>
+  <!-- Підключення CSS стилів бібліотеки basicLightbox -->
+  <link href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css" rel="stylesheet"/>
+  <style>
+    /* Стилізуйте вашу галерею тут */
+  </style>
+</head>
+<body>
+  <!-- Галерея -->
+  <ul class="gallery">
+    <li class="gallery__item">
+      <a class="gallery__link" href="large-image-1.jpg">
+        <img
+          class="gallery__image"
+          src="thumbnail-image-1.jpg"
+          data-source="large-image-1.jpg"
+          alt='Hokkaido Flower'
+        />
+      </a>
+    </li>
+    <!-- Додайте інші елементи галереї за необхідністю -->
+  </ul>
 
-    <!-- Add gallery items to this list -->
-    <ul class="gallery"></ul>
+  <!-- Підключення скрипту бібліотеки basicLightbox -->
+  <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
+  <script>
+    const gallery = document.querySelector(".gallery");
 
-    <script src="js/01-gallery.js" type="module"></script>
-  </body>
+    gallery.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      // Перевірка, чи клікнуто на зображенні
+      if (event.target.nodeName === "IMG") {
+        // Отримання URL великого зображення з атрибута data-source
+        const source = event.target.dataset.source;
+
+        // Створення модального вікна для зображення
+        const instance = basicLightbox.create(`<img src="${source}" alt="Image description">`);
+
+        // Показ модального вікна
+        instance.show();
+      }
+    });
+  </script>
+</body>
 </html>
