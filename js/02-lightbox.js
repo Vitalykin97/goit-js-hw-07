@@ -1,4 +1,5 @@
-import { galleryItems } from './gallery-items.js';
-// Change code below this line
-
-console.log(galleryItems);
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const gallery = new SimpleLightbox('.gallery a');
+});
+</script>
